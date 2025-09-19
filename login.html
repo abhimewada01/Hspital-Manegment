@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aditya Care Login</title>
+    <base href="./">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+</head>
+<body class="login-page-body">
+
+    <a href="index.html" class="back-to-website-btn">
+        <i class="fas fa-arrow-left"></i> Back to Website
+    </a>
+
+    <div class="login-wrapper">
+        <div class="login-branding">
+            <div class="branding-content">
+                <i class="fas fa-hospital-user branding-icon"></i>
+                <h1>Welcome to Aditya Care</h1>
+                <p>Your health is our first priority. Login to access your dashboard.</p>
+            </div>
+        </div>
+        <div class="login-form-area">
+            <div class="login-box">
+                <div class="login-header">
+                    <i class="fas fa-user-circle"></i>
+                    <h2>Login to Your Account</h2>
+                </div>
+                <form id="loginForm">
+                    <div class="input-group">
+                        <i class="fas fa-user input-icon"></i>
+                        <input type="text" id="username" placeholder="Full Name" required>
+                    </div>
+                    <div class="input-group">
+                        <i class="fas fa-lock input-icon"></i>
+                        <input type="password" id="password" placeholder="Password" required>
+                    </div>
+                    <div class="input-group">
+                        <i class="fas fa-id-badge input-icon"></i>
+                        <select id="role">
+                            <option value="patient">Login as Patient</option>
+                            <option value="admin">Login as Admin</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="login-btn">Login Now</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const loginBtn = event.target.querySelector('.login-btn');
+            const role = document.getElementById('role').value;
+            const username = document.getElementById('username').value;
+
+            loginBtn.disabled = true;
+            loginBtn.textContent = 'Logging in...';
+
+            if (username.trim() !== '') {
+                localStorage.setItem('loggedInUserName', username);
+            }
+
+            setTimeout(() => {
+                if (role === 'admin') {
+                    window.location.href = 'admin-dashboard.html';
+                } else if (role === 'patient') {
+                    window.location.href = 'patient-dashboard.html';
+                } else {
+                    // Fallback for debugging
+                    alert('Login failed. Please try again.');
+                    loginBtn.disabled = false;
+                    loginBtn.textContent = 'Login Now';
+                }
+            }, 500);
+        });
+    </script>
+</body>
+</html>

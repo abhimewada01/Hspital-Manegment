@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aditya Care Hospital - The Future of Healthcare</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+</head>
+<body class="homepage-body">
+
+    <header class="site-header">
+        <nav class="navbar">
+            <a href="#" class="nav-logo"><i class="fas fa-hospital"></i> Aditya Care</a>
+            <ul class="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#doctors">Our Doctors</a></li>
+                <li><a href="#appointment-form">Appointment</a></li>
+            </ul>
+            <a href="login.html" class="nav-login-btn">Login</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero-section">
+            <div class="hero-content">
+                <h1>Where Healing and Compassion Come Together</h1>
+                <p>Advanced Medical Care with a Personal Touch.</p>
+                <a href="#appointment-form" class="hero-btn">Book an Appointment Today</a>
+            </div>
+        </section>
+        
+        <section id="doctors" class="content-section-light">
+            <h2 class="section-title">Meet Our Specialists</h2>
+            <div class="doctor-grid">
+                <div class="doctor-card">
+                    <img src="images/dr_male_1.jpg" alt="Dr. Ramesh Gupta">
+                    <h4>Dr. Ramesh Gupta</h4>
+                    <p class="doctor-specialty">Chief Cardiologist, MD</p>
+                    <p class="doctor-location"><i class="fas fa-map-marker-alt"></i> Room 204, 2nd Floor, Cardiology Wing</p>
+                </div>
+                <div class="doctor-card">
+                    <img src="images/dr_female_1.jpg" alt="Dr. Sunita Singh">
+                    <h4>Dr. Sunita Singh</h4>
+                    <p class="doctor-specialty">Lead Neurologist, DM</p>
+                    <p class="doctor-location"><i class="fas fa-map-marker-alt"></i> Room 312, 3rd Floor, Neurology Wing</p>
+                </div>
+                <div class="doctor-card">
+                    <img src="images/dr_male_2.jpg" alt="Dr. Vikram Patel">
+                    <h4>Dr. Vikram Patel</h4>
+                    <p class="doctor-specialty">Orthopedic Surgeon, MS</p>
+                    <p class="doctor-location"><i class="fas fa-map-marker-alt"></i> Room 101, 1st Floor, Orthopedics Wing</p>
+                </div>
+                <div class="doctor-card">
+                    <img src="images/dr_female_2.jpg" alt="Dr. Anjali Desai">
+                    <h4>Dr. Anjali Desai</h4>
+                    <p class="doctor-specialty">Head of Pediatrics, DNB</p>
+                    <p class="doctor-location"><i class="fas fa-map-marker-alt"></i> Room 405, 4th Floor, Pediatrics Wing</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="appointment-form" class="content-section">
+            <h2 class="section-title">Book a Smart Appointment</h2>
+            <form class="appointment-form" id="mainAppointmentForm">
+                <input type="text" id="patientName" placeholder="Your Full Name" required>
+                <input type="tel" placeholder="Your Phone Number" required>
+                <select id="departmentSelect" required>
+                    <option value="">Select Department</option>
+                    <option value="Cardiology">Cardiology</option>
+                    <option value="Neurology">Neurology</option>
+                    <option value="Orthopedics">Orthopedics</option>
+                    <option value="Pediatrics">Pediatrics</option>
+                </select>
+                <select id="doctorSelect" required disabled>
+                    <option value="">First, Select a Department</option>
+                </select>
+                <input type="date" id="appointmentDate" required class="full-width">
+                <button type="submit" class="full-width">Confirm Appointment</button>
+            </form>
+            <div id="confirmation" class="appointment-confirmation" style="display: none;">
+                <p id="confirmationMessage"></p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2025 Aditya Care Hospital. All Rights Reserved.</p>
+    </footer>
+    
+    <script src="chatbot.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const doctorsByDepartment = {
+                Cardiology: { "Dr. Ramesh Gupta": "Room 204, 2nd Floor, Cardiology Wing" },
+                Neurology: { "Dr. Sunita Singh": "Room 312, 3rd Floor, Neurology Wing" },
+                Orthopedics: { "Dr. Vikram Patel": "Room 101, 1st Floor, Orthopedics Wing" },
+                Pediatrics: { "Dr. Anjali Desai": "Room 405, 4th Floor, Pediatrics Wing" }
+            };
+            const departmentSelect = document.getElementById("departmentSelect");
+            const doctorSelect = document.getElementById("doctorSelect");
+            departmentSelect.addEventListener("change", () => {
+                const selectedDept = departmentSelect.value;
+                doctorSelect.innerHTML = '<option value="">Select Doctor</option>';
+                if (selectedDept && doctorsByDepartment[selectedDept]) {
+                    doctorSelect.disabled = false;
+                    const doctors = doctorsByDepartment[selectedDept];
+                    for (const doctorName in doctors) {
+                        const option = document.createElement("option");
+                        option.value = doctorName;
+                        option.textContent = doctorName;
+                        doctorSelect.appendChild(option);
+                    }
+                } else {
+                    doctorSelect.disabled = true;
+                    doctorSelect.innerHTML = '<option value="">First, Select a Department</option>';
+                }
+            });
+            const appointmentForm = document.getElementById("mainAppointmentForm");
+            const confirmationDiv = document.getElementById("confirmation");
+            const confirmationMessage = document.getElementById("confirmationMessage");
+            appointmentForm.addEventListener("submit", (e) => {
+                e.preventDefault();
+                const patientName = document.getElementById("patientName").value;
+                const selectedDept = departmentSelect.value;
+                const selectedDoctor = doctorSelect.value;
+                const appointmentDate = document.getElementById("appointmentDate").value;
+                const doctorLocation = doctorsByDepartment[selectedDept][selectedDoctor];
+                confirmationMessage.innerHTML = `<strong>Thank you, ${patientName}!</strong><br>Your appointment is confirmed with <strong>${selectedDoctor}</strong> on <strong>${appointmentDate}</strong>.<br>Please visit us at: <strong>${doctorLocation}</strong>.`;
+                confirmationDiv.style.display = "block";
+                appointmentForm.reset();
+                doctorSelect.disabled = true;
+                doctorSelect.innerHTML = '<option value="">First, Select a Department</option>';
+            });
+        });
+    </script>
+</body>
+</html>

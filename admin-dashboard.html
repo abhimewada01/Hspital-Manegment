@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Aditya Care</title>
+    <base href="./">
+    <link rel="stylesheet" href="style.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+</head>
+<body class="dashboard-body">
+    <div class="container">
+        <aside class="sidebar">
+            <div class="sidebar-header"><i class="fas fa-hospital-user"></i><h2>Aditya Care (Admin)</h2></div>
+            <ul class="sidebar-menu">
+                <li class="active"><a href="#"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="#"><i class="fas fa-user-injured"></i> Patients</a></li>
+                <li><a href="#"><i class="fas fa-user-md"></i> Doctors</a></li>
+                <li><a href="index.html" target="_blank"><i class="fas fa-home"></i> Visit Website</a></li>
+            </ul>
+            <div class="sidebar-footer"><a href="login.html"><i class="fas fa-sign-out-alt"></i> Logout</a></div>
+        </aside>
+        
+        <main class="main-content">
+            <header class="header">
+                <div class="header-title"><h1>Admin Dashboard</h1><p>Welcome back, Admin!</p></div>
+                <div class="header-user"><img src="images/dr_male_1.jpg" alt="Admin Avatar"></div>
+            </header>
+            
+            <section class="quick-stats">
+                 <div class="stat-card">
+                    <div class="stat-info">
+                        <h3>Today's Appointments</h3>
+                        <p>62</p>
+                    </div>
+                    <div class="stat-icon appointments"><i class="fas fa-calendar-check"></i></div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <h3>Total Patients</h3>
+                        <p>1,250</p>
+                    </div>
+                    <div class="stat-icon patients"><i class="fas fa-user-injured"></i></div>
+                </div>
+            </section>
+
+            <section class="main-data">
+                <div class="data-card appointments-list">
+                    <h3>Upcoming Appointments</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Patient Name</th>
+                                <th>Doctor</th>
+                                <th>Date & Time</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Ravi Kumar</td>
+                                <td>Dr. Ramesh Gupta</td>
+                                <td>17 Sep, 10:30 AM</td>
+                                <td><span class="status confirmed">Confirmed</span></td>
+                            </tr>
+                            <tr>
+                                <td>Anjali Verma</td>
+                                <td>Dr. Anjali Desai</td>
+                                <td>17 Sep, 11:00 AM</td>
+                                <td><span class="status pending">Pending</span></td>
+                            </tr>
+                             <tr>
+                                <td>Priya Sharma</td>
+                                <td>Dr. Sunita Singh</td>
+                                <td>18 Sep, 12:00 PM</td>
+                                <td><span class="status confirmed">Confirmed</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

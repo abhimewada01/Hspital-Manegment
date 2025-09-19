@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Dashboard - Aditya Care</title>
+    <base href="./">
+    <link rel="stylesheet" href="style.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+</head>
+<body class="dashboard-body">
+    <div class="container">
+        <aside class="sidebar">
+            <div class="sidebar-header"><i class="fas fa-hospital-user"></i><h2>Aditya Care (Patient)</h2></div>
+            <ul class="sidebar-menu">
+                <li class="active"><a href="#"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="#"><i class="fas fa-user-circle"></i> My Profile</a></li>
+                <li><a href="#"><i class="fas fa-calendar-check"></i> My Appointments</a></li>
+                <li><a href="index.html#appointment-form" target="_blank"><i class="fas fa-plus-circle"></i> Book New Appointment</a></li>
+            </ul>
+            <div class="sidebar-footer"><a href="login.html"><i class="fas fa-sign-out-alt"></i> Logout</a></div>
+        </aside>
+        
+        <main class="main-content">
+            <header class="header">
+                <div class="header-title">
+                    <h1>Patient Dashboard</h1>
+                    <p id="welcomeMessage">Welcome back!</p>
+                </div>
+                <div class="header-user"><img src="images/dr_male_2.jpg" alt="Patient Avatar"></div>
+            </header>
+            
+            <section class="quick-stats">
+                 <div class="stat-card">
+                    <div class="stat-info">
+                        <h3>Upcoming Appointments</h3>
+                        <p>2</p>
+                    </div>
+                    <div class="stat-icon appointments"><i class="fas fa-calendar-check"></i></div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <h3>My Profile</h3>
+                        <p>View & Edit</p>
+                    </div>
+                    <div class="stat-icon profile"><i class="fas fa-user-edit"></i></div>
+                </div>
+            </section>
+
+            <section class="main-data">
+                <div class="data-card appointments-list">
+                    <h3>My Appointments</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Doctor</th>
+                                <th>Department</th>
+                                <th>Date & Time</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Dr. Ramesh Gupta</td>
+                                <td>Cardiology</td>
+                                <td>25 Sep, 09:00 AM</td>
+                                <td><span class="status confirmed">Confirmed</span></td>
+                            </tr>
+                            <tr>
+                                <td>Dr. Sunita Singh</td>
+                                <td>Neurology</td>
+                                <td>15 Oct, 02:30 PM</td>
+                                <td><span class="status confirmed">Confirmed</span></td>
+                            </tr>
+                            <tr>
+                                <td>Dr. Vikram Patel</td>
+                                <td>Orthopedics</td>
+                                <td>05 Aug, 11:00 AM</td>
+                                <td><span class="status pending">Completed</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const userName = localStorage.getItem('loggedInUserName');
+            if (userName) {
+                document.getElementById('welcomeMessage').textContent = `Welcome back, ${userName}!`;
+            }
+        });
+    </script>
+</body>
+</html>
