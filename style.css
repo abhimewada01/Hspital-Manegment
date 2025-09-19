@@ -501,9 +501,42 @@ tbody tr:hover { background-color: #f1f1f1; }
 }
 
 @media (max-width: 768px) {
-    .nav-menu { display: none; } /* Simplified for this example. A JS-based toggle would be needed for a real site. */
-    .hero-content h1 { font-size: 2.5rem; }
-    .appointment-form { grid-template-columns: 1fr; }
-    .chatbot { width: 100%; right: 0; bottom: 0; border-radius: 0; }
-    .header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    /* --- Styles for Phones --- */
+    .nav-menu { 
+        display: none; 
+    } /* Simplified for this example. A JS-based toggle would be needed for a real site. */
+    
+    /* Make fonts smaller for better readability */
+    .hero-content h1 { 
+        font-size: 2.5rem; 
+    } /* Reduced from 3.5rem */
+    .section-title { 
+        font-size: 2rem; 
+    } /* Reduced from 2.5rem */
+
+    /* Stack elements instead of side-by-side */
+    .appointment-form { 
+        grid-template-columns: 1fr; 
+    }
+    .doctor-grid { 
+        grid-template-columns: 1fr; 
+    }
+    .header { 
+        flex-direction: column; 
+        align-items: flex-start; 
+        gap: 1rem; 
+    }
+
+    /* Adjust chatbot for full width */
+    .chatbot { 
+        width: 100%; 
+        right: 0; 
+        bottom: 0; 
+        border-radius: 0; 
+    }
+
+    /* Reduce padding to create more space */
+    .content-section, .content-section-light {
+        padding: 40px 5%;
+    }
 }
